@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1MG3HKSRY1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  
+    gtag('config', 'G-1MG3HKSRY1');
+    </script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Computer Simulator | Chromebook</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+	  <script src="script.js"></script>
+    <script src="app.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  </head>
+  <body id="body" class="body" onload="main();" onmousemove="menuMore();">
+    <div id="nightLight" class="night-light-off"></div>
+    <div id="rightClick" class="rightClick">
+      <table class="settings-table">
+        <tr onclick="autohideShelf();">
+          <td>
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0zm0 0h24v24H0V0zm0 0h24v24H0V0zm0 0h24v24H0V0z" fill="none"/><path d="M12 6c3.79 0 7.17 2.13 8.82 5.5-.59 1.22-1.42 2.27-2.41 3.12l1.41 1.41c1.39-1.23 2.49-2.77 3.18-4.53C21.27 7.11 17 4 12 4c-1.27 0-2.49.2-3.64.57l1.65 1.65C10.66 6.09 11.32 6 12 6zm-1.07 1.14L13 9.21c.57.25 1.03.71 1.28 1.28l2.07 2.07c.08-.34.14-.7.14-1.07C16.5 9.01 14.48 7 12 7c-.37 0-.72.05-1.07.14zM2.01 3.87l2.68 2.68C3.06 7.83 1.77 9.53 1 11.5 2.73 15.89 7 19 12 19c1.52 0 2.98-.29 4.32-.82l3.42 3.42 1.41-1.41L3.42 2.45 2.01 3.87zm7.5 7.5l2.61 2.61c-.04.01-.08.02-.12.02-1.38 0-2.5-1.12-2.5-2.5 0-.05.01-.08.01-.13zm-3.4-3.4l1.75 1.75c-.23.55-.36 1.15-.36 1.78 0 2.48 2.02 4.5 4.5 4.5.63 0 1.23-.13 1.77-.36l.98.98c-.88.24-1.8.38-2.75.38-3.79 0-7.17-2.13-8.82-5.5.7-1.43 1.72-2.61 2.93-3.53z"/></svg>
+          </td>
+          <td>
+            Autohide Shelf
+          </td>
+          <td>
+            
+          </td>
+        </tr>
+        <tr onclick="changeShelfPos();">
+          <td>
+            <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><g><rect fill="none" height="24" width="24"/></g><g><path d="M2,6v12h2V8h10v10h2v-2h4v2h2V6H2z M20,8v2h-4V8H20z M16,14v-2h4v2H16z"/></g></svg>
+          </td>
+          <td>
+            Shelf Position
+          </td>
+          <td>
+            <!--&#8250;-->
+          </td>
+        </tr>
+        <tr onclick="openWallpaper();">
+          <td>
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-4.86 8.86l-3 3.87L9 13.14 6 17h12l-3.86-5.14z"/></svg>
+          </td>
+          <td>
+            Set Wallpaper
+          </td>
+          <td>
+            
+          </td>
+        </tr>
+      </table>
+    </div>
+    
+    <div id="calc-app">
+      <div class="calc-app-inner">
+        <div class="app-menu">
+          <p>Calculator</p>
+          <img class="app-menu-close" src="img/close_black_24dp.svg" onclick="closeCalc();">
+        </div>
+      </div>
+    </div>
+    
+    <!-- <div class="dev-console"> -->
+      <div id="devConsole" class="dev-console resizable-win">
+        <div id="devConsole-header" class="app-menu">
+          <p>Dev Console</p>
+          <img class="app-menu-close" src="img/close_black_24dp.svg" onclick="closeApp('devConsole');">
+        </div>
+        <div class="dev-text-container">
+          <p id="devText"><span class="help">--- Type <b><i>@help</i></b> to get help ---</span><br></p>
+        </div>
+        <div class="dev-input-container">
+          <input id="devInput" type="text" onchange="devConsoleInput();">
+          <h3 onclick="devConsoleClear();">Clear</h3>
+        </div>
+      </div>
+    <!-- </div> -->
+    
+    <div id="settingsWallpaper" class="settings">
+      <div id="settingsWallpaperheader" class="window-Menu">
+        <table>
+          <tr>
+            <td id="settingsMinimize" class="settings-option" onmousedown="closeWallpaper();" onmouseover="svgHover('settingsExit')" onmousemove="svgLeave('settingsExit')">
+              <!--<svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 0 24 24' width='24px' fill='#000000'><path d='M0 0h24v24H0V0z' fill='none'/><path d='M6 19h12v2H6v-2z'/></svg>-->
+              <img id="settingsMinimize_img" src="img/minimize_black_24dp.svg">
+            </td>
+            <td id="settingsFull" class="settings-option" onclick="" onmouseover="svgHover('settingsFull')" onmousemove="svgLeave('settingsFull')">
+              <!--<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>-->
+              <img id="settingsFull_img" src="img/fullscreen_black_24dp.svg">
+            </td>
+            <td id="settingsExit" class="settings-option" onmousedown="closeWallpaper();" onmouseover="svgHover('settingsExit')" onmousemove="svgLeave('settingsExit')">
+              <!--<btn><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg></btn>!-->
+              <img id="settingsMinimize_img" src="img/minimize_black_24dp.svg">
+            </td>
+          </tr>
+        </table>
+      </div>
+      <table>
+        <tr>
+          <td>
+            <img id="currentImg" class="currentImg"><!-- src='img/' -->
+          </td>
+          <td>
+            <h3 id="">Currently Set</h3>
+            <h2 id="currentImgName"></h2>
+          </td>
+        </tr>
+      </table>
+      <hr style="width: 75%; margin-top: -50px;">
+      <div class="wallpaper-outer">
+        <div class="grid-container">
+          <div class="grid-item">
+            <img id="selectImg1" class="selectImg" onclick="setCookie('Background', 'img/defaultWallpaper.jpg', 99999999); changeWallpaper('defaultWallpaper.jpg');" src="img/defaultWallpaper.jpg">
+          </div>
+          <div class="grid-item">
+            <img id="selectImg1" class="selectImg" onclick="setCookie('Background', 'img/patrick-tomasso-5hvn-2WW6rY-unsplash.jpg', 99999999); changeWallpaper();" src="img/patrick-tomasso-5hvn-2WW6rY-unsplash.jpg">
+          </div>
+          <div class="grid-item">
+            <img id="selectImg1" class="selectImg" onclick="setCookie('Background', 'img/vadim-sherbakov-NQSWvyVRIJk-unsplash.jpg', 99999999); changeWallpaper();" src="img/vadim-sherbakov-NQSWvyVRIJk-unsplash.jpg">
+          </div>
+          
+          <div class="grid-item">
+            <img id="selectImg1" class="selectImg" onclick="setCookie('Background', 'img/sora-sagano-4T_74DQL3qg-unsplash.jpg', 99999999); changeWallpaper();" src="img/sora-sagano-4T_74DQL3qg-unsplash.jpg">
+          </div>
+          <div class="grid-item">
+            <img id="selectImg1" class="selectImg" onclick="setCookie('Background', 'img/lucas-calloch-P-yzuyWFEIk-unsplash.jpg', 99999999); changeWallpaper();" src="img/lucas-calloch-P-yzuyWFEIk-unsplash.jpg">
+          </div>
+          <div class="grid-item">
+            <img id="selectImg1" class="selectImg" onclick="setCookie('Background', 'img/lucas-wesney-s-y2HJElONo-unsplash.jpg', 99999999); changeWallpaper();" src="img/lucas-wesney-s-y2HJElONo-unsplash.jpg">
+          </div>
+          
+          <div class="grid-item">
+            <img id="selectImg1" class="selectImg" onclick="setCookie('Background', 'img/keith-misner-h0Vxgz5tyXA-unsplash.jpg', 99999999); changeWallpaper();" src="img/keith-misner-h0Vxgz5tyXA-unsplash.jpg">
+          </div>
+          <div class="grid-item">
+            <img id="selectImg1" class="selectImg" onclick="setCookie('Background', 'img/boxed-water-is-better-3iiyde9Zj8A-unsplash.jpg', 99999999); changeWallpaper();" src="img/boxed-water-is-better-3iiyde9Zj8A-unsplash.jpg">
+          </div>
+          <div class="grid-item">
+            <img id="selectImg1" class="selectImg" onclick="setCookie('Background', 'img/martin-sX4lxBWV0-A-unsplash.jpg', 99999999); changeWallpaper();" src="img/martin-sX4lxBWV0-A-unsplash.jpg">
+          </div>
+          
+          <div class="grid-item">
+            <img id="selectImg1" class="selectImg" onclick="setCookie('Background', 'img/gradienta-bKESVqfxass-unsplash.jpg', 99999999); changeWallpaper();" src="img/gradienta-bKESVqfxass-unsplash.jpg">
+          </div>
+          <div class="grid-item">
+            <img id="selectImg1" class="selectImg" onclick="setCookie('Background', 'img/milad-fakurian-CN2FEPXERRI-unsplash.jpg', 99999999); changeWallpaper();" src="img/milad-fakurian-CN2FEPXERRI-unsplash.jpg">
+          </div>
+          <div class="grid-item">
+            <img id="selectImg1" class="selectImg" onclick="setCookie('Background', 'img/richard-horvath-_nWaeTF6qo0-unsplash.jpg', 99999999); changeWallpaper();" src="img/richard-horvath-_nWaeTF6qo0-unsplash.jpg">
+          </div>
+          
+          <div class="grid-item">
+            <img id="selectImg1" class="selectImg" onclick="setCookie('Background', 'img/sandro-katalina-k1bO_VTiZSs-unsplash.jpg', 99999999); changeWallpaper();" src="img/sandro-katalina-k1bO_VTiZSs-unsplash.jpg">
+          </div>
+          <div class="grid-item">
+            <img id="selectImg1" class="selectImg" onclick="setCookie('Background', 'img/tim-schmidbauer-TE_lOmkKq04-unsplash.jpg', 99999999); changeWallpaper();" src="img/tim-schmidbauer-TE_lOmkKq04-unsplash.jpg">
+          </div>
+          <div class="grid-item">
+            <img id="selectImg1" class="selectImg" onclick="setCookie('Background', 'img/pgaberski-IDNBHZTamQ8-unsplash.jpg', 99999999); changeWallpaper();" src="img/pgaberski-IDNBHZTamQ8-unsplash.jpg">
+          </div>
+          
+          <div class="grid-item">
+            <img id="selectImg1" class="selectImg" onclick="setCookie('Background', 'img/alexander-shatov-sIFCJHrUWPM-unsplash.jpg', 99999999); changeWallpaper();" src="img/alexander-shatov-sIFCJHrUWPM-unsplash.jpg">
+          </div>
+          <div class="grid-item">
+            <img id="selectImg1" class="selectImg" onclick="setCookie('Background', 'img/alexander-shatov-niUkImZcSP8-unsplash.jpg', 99999999); changeWallpaper();" src="img/alexander-shatov-niUkImZcSP8-unsplash.jpg">
+          </div>
+          <div class="grid-item">
+            <img id="selectImg1" class="selectImg" onclick="setCookie('Background', 'img/alexander-shatov-w-qqwn5O-4I-unsplash.jpg', 99999999); changeWallpaper();" src="img/alexander-shatov-w-qqwn5O-4I-unsplash.jpg">
+          </div>
+          
+          <div class="grid-item">
+            <img id="selectImg1" class="selectImg" onclick="setCookie('Background', 'img/nielsen101004Studios.png', 99999999); changeWallpaper();" src="img/nielsen101004Studios.png">
+          </div>
+          <div class="grid-item">
+            <div class="form-input-div">
+              <label for="file-ip-1">Upload</label>
+              <br>
+              <input type="file" class="file-input" id="file-ip-1" accept="image/*" onchange="showPreview(event);">
+            </div>
+          </div>
+          <div class="grid-item">
+          </div><!-- grid-item -->
+        </div><!-- wallpaper-outer -->
+      </div><!-- windowMenu -->
+    </div><!-- settingsMain -->
+    
+    
+    <!-- Window-Main -->
+    <div id="settingsMain" class="settings">
+      <div id="windowMenu" class="window-Menu">
+        <table>
+          <tr>
+            <td id="settingsMinimize" class="settings-option" onmousedown="closeWallpaper();" onmouseover="svgHover('settingsExit')" onmousemove="svgLeave('settingsExit')">
+              <!--<svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 0 24 24' width='24px' fill='#000000'><path d='M0 0h24v24H0V0z' fill='none'/><path d='M6 19h12v2H6v-2z'/></svg>-->
+              <img id="settingsMinimize_img" src="img/minimize_black_24dp.svg">
+            </td>
+            <td id="settingsFull" class="settings-option" onclick="" onmouseover="svgHover('settingsFull')" onmousemove="svgLeave('settingsFull')">
+              <!--<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>-->
+              <img id="settingsFull_img" src="img/fullscreen_black_24dp.svg">
+            </td>
+            <td id="settingsExit" class="settings-option" onmousedown="closeSettings();" onmouseover="svgHover('settingsExit')" onmousemove="svgLeave('settingsExit')">
+              <!--<btn><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg></btn>!-->
+              <img id="settingsExit_img" src="img/close_black_24dp.svg">
+            </td>
+          </tr>
+        </table>
+      </div>
+      <br><br>
+      <hr style="width: 75%; margin-top: -50px;">
+      <div class="settings-grid-container">
+        <div style="" class="settings-item2">
+          <b style="font-size: 18px; color: grey">Settings</b>
+          <table style="border-spacing: 0 5px;" width="240px">
+            <tr class="settings-menu-item">
+              <td><img height="20px" src="img/signal_wifi_4_bar_black_24dp.svg"></td>
+              <td class="settings-menu-button">Network</td>
+            </tr>
+            <tr class="settings-menu-item">
+              <td><img height="20px" src="img/bluetooth_FILL0_wght400_GRAD0_opsz24.svg"></td>
+              <td class="settings-menu-button">Bluetooth</td>
+            </tr>
+            <tr class="settings-menu-item">
+              <td><img height="20px" src="img/smartphone_FILL0_wght400_GRAD0_opsz24.svg"></td>
+              <td class="settings-menu-button">Connected Devices</td>
+            </tr>
+            <tr class="settings-menu-item">
+              <td><img height="20px" src="img/account_circle_black_24dp.svg"></td>
+              <td class="settings-menu-button">Accounts</td>
+            </tr>
+            <tr class="settings-menu-item">
+              <td><img height="20px" src="img/laptop_chromebook_FILL0_wght400_GRAD0_opsz24.svg"></td>
+              <td class="settings-menu-button">Device</td>
+            </tr>
+            <tr class="settings-menu-item">
+              <td><img height="20px" src="img/brush_FILL0_wght400_GRAD0_opsz24.svg"></td>
+              <td class="settings-menu-button">Personalization</td>
+            </tr>
+            <tr class="settings-menu-item">
+              <td><img height="20px" src="img/search_black_24dp.svg"></td>
+              <td class="settings-menu-button">Search and Assistant</td>
+            </tr>
+            <tr class="settings-menu-item">
+              <td><img height="20px" src="img/security_FILL0_wght400_GRAD0_opsz24.svg"></td>
+              <td class="settings-menu-button">Security and Privacy</td>
+            </tr>
+            <tr class="settings-menu-item">
+              <td><img height="20px" src="img/apps_FILL0_wght400_GRAD0_opsz24.svg"></td>
+              <td class="settings-menu-button">Apps</td>
+            </tr>
+          </table>
+        </div>
+        <!--<div class="settings-item1">
+          <div id="settingSearch" class="settingSearch">
+            <table class="settings-search-outer">
+              <tr class="settings-search-inner">
+                <td>
+                  <img class="settings-search-img" src="img/search_black_24dp.svg">
+                </td>
+                <td>
+                  <input id="settingsSearchImg" class="settings-search-input" type="input" placeholder="Search settings">
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>!-->
+        <div id="settingsDashboard" class="settings-dashboard">
+        <div>
+          <div class="settings-dashboard-inner">
+            <div class="settings-card">
+              
+              <p class="card-header">Network</p>
+              <div class="card-inner">
+                <div class="card-row">
+                  <div class="card-row-left">
+                    <img src="img/signal_wifi_4_bar_black_24dp.svg">
+                    <div class="card-row-text">
+                      <p class="card-row-header">Wi-Fi</p>
+                      <p class="card-row-sub">Off</p>
+                    </div>
+                  </div>
+                  <div class="card-row-right">
+                    <p class="card-row-open">></p>
+                  </div>
+                </div>
+                <hr>
+                <div class="card-row">
+                  <div class="card-row-left">
+                    <div class="card-row-text">
+                      <p class="card-row-header">Add Connection</p>
+                    </div>
+                  </div>
+                  <div class="card-row-right">
+                    <p class="card-row-open">></p>
+                  </div>
+                </div>
+              </div>
+              
+              <br>
+              
+              <p class="card-header">Network</p>
+              <div class="card-inner">
+                <div class="card-row">
+                  <div class="card-row-left">
+                    <img src="img/bluetooth_FILL0_wght400_GRAD0_opsz24.svg">
+                    <div class="card-row-text">
+                      <p class="card-row-header">Bluetooth</p>
+                      <p class="card-row-sub">Off</p>
+                    </div>
+                  </div>
+                  <div class="card-row-right">
+                    <p class="card-row-open">></p>
+                  </div>
+                </div>
+              </div>
+              
+              <br>
+              
+              <p class="card-header">Connected Devices</p>
+              <div class="card-inner">
+                <div class="card-row">
+                  <div class="card-row-left">
+                    <img src="img/smartphone_FILL0_wght400_GRAD0_opsz24.svg">
+                    <div class="card-row-text">
+                      <p class="card-row-header">Android Phone</p>
+                      <p class="card-row-sub">No eligible devices. <a href="https://support.google.com/chromebook/?p=multi_device&b=celes-signed-mp-v2keys">Learn more</a></p>
+                    </div>
+                  </div>
+                  <div class="card-row-right">
+                    <p class="card-row-open">></p>
+                  </div>
+                </div>
+                <hr>
+                <div class="card-row">
+                  <div class="card-row-left">
+                    <img src="img/mobile_screen_share_black_24dp.svg">
+                    <div class="card-row-text">
+                      <p class="card-row-header">Nearby Share</p>
+                      <p class="card-row-sub">Share files with people around you. <a href="https://support.google.com/chromebook/?p=multi_device&b=celes-signed-mp-v2keys">Learn more</a></p>
+                    </div>
+                  </div>
+                  <div class="card-row-right">
+                    <p class="card-row-open">></p>
+                  </div>
+                </div>
+              </div>
+              
+              <br>
+              
+              <p class="card-header">Accounts</p>
+              <div class="card-inner">
+                <div class="card-row">
+                  <div class="card-row-left">
+                    <img src="img/account_circle_black_24dp.svg">
+                    <div class="card-row-text">
+                      <p class="card-row-header">Currently signed in as <span id="settings-user"></span></p>
+                      <p class="card-row-sub">1 Google Account</p>
+                    </div>
+                  </div>
+                  <div class="card-row-right">
+                    <p class="card-row-open">></p>
+                  </div>
+                </div>
+                <hr>
+                <div class="card-row">
+                  <div class="card-row-left">
+                    <img src="img/sync_black_24dp.svg">
+                    <div class="card-row-text">
+                      <p class="card-row-header">Sync and Google services</p>
+                    </div>
+                  </div>
+                  <div class="card-row-right">
+                    <p class="card-row-open">></p>
+                  </div>
+                </div>
+              </div>
+              
+              <br>
+              
+              <p class="card-header">Device</p>
+              <div class="card-inner">
+                <div class="card-row">
+                  <div class="card-row-left">
+                    <div class="card-row-text">
+                      <p class="card-row-header">Touchpad</p>
+                    </div>
+                  </div>
+                  <div class="card-row-right">
+                    <p class="card-row-open">></p>
+                  </div>
+                </div>
+                
+                <hr>
+                <div class="card-row">
+                  <div class="card-row-left">
+                    <div class="card-row-text">
+                      <p class="card-row-header">Keyboard</p>
+                    </div>
+                  </div>
+                  <div class="card-row-right">
+                    <p class="card-row-open">></p>
+                  </div>
+                </div>
+                
+                <hr>
+                <div class="card-row">
+                  <div class="card-row-left">
+                    <div class="card-row-text">
+                      <p class="card-row-header">Displays</p>
+                    </div>
+                  </div>
+                  <div class="card-row-right">
+                    <p class="card-row-open">></p>
+                  </div>
+                </div>
+                
+                <hr>
+                <div class="card-row">
+                  <div class="card-row-left">
+                    <div class="card-row-text">
+                      <p class="card-row-header">Storage Managment</p>
+                    </div>
+                  </div>
+                  <div class="card-row-right">
+                    <p class="card-row-open">></p>
+                  </div>
+                </div>
+                
+                <hr>
+                <div class="card-row">
+                  <div class="card-row-left">
+                    <div class="card-row-text">
+                      <p class="card-row-header">Keyboard</p>
+                    </div>
+                  </div>
+                  <div class="card-row-right">
+                    <p class="card-row-open">></p>
+                  </div>
+                </div>
+              </div>
+              
+              <br>
+              
+              <p class="card-header">Personalization</p>
+              <div class="card-inner">
+                <div class="card-row">
+                  <div class="card-row-left">
+                    <div class="card-row-text">
+                      <p class="card-row-header">Change device account image</p>
+                    </div>
+                  </div>
+                  <div class="card-row-right">
+                    <p class="card-row-open">></p>
+                  </div>
+                </div>
+                
+                <hr>
+                <div class="card-row">
+                  <div class="card-row-left">
+                    <div class="card-row-text">
+                      <p class="card-row-header">Wallpaper</p>
+                      <p class="card-row-sub">Open the wallpaper app</p>
+                    </div>
+                  </div>
+                  <div class="card-row-right">
+                    <p class="card-row-open">></p>
+                  </div>
+                </div>
+                
+                <hr>
+                <div class="card-row">
+                  <div class="card-row-left">
+                    <div class="card-row-text">
+                      <p class="card-row-header">Screen saver</p>
+                      <p class="card-row-sub">Disabled</p>
+                    </div>
+                  </div>
+                  <div class="card-row-right">
+                    <p class="card-row-open">></p>
+                  </div>
+                </div>
+              </div>
+              
+              <br>
+              
+              <p class="card-header">Search and Assistant</p>
+              <div class="card-inner">
+                <div class="card-row">
+                  <div class="card-row-left">
+                    <div class="card-row-text">
+                      <p class="card-row-header">Search</p>
+                    </div>
+                  </div>
+                  <div class="card-row-right">
+                    <p class="card-row-open">></p>
+                  </div>
+                </div>
+                
+                <hr>
+                <div class="card-row">
+                  <div class="card-row-left">
+                    <div class="card-row-text">
+                      <p class="card-row-header">Google Assistant</p>
+                      <p class="card-row-sub">Enabled</p>
+                    </div>
+                  </div>
+                  <div class="card-row-right">
+                    <p class="card-row-open">></p>
+                  </div>
+                </div>
+              </div>
+              
+              <br>
+              
+              <p class="card-header">Security and Privacy</p>
+              <div class="card-inner">
+                <div class="card-row">
+                  <div class="card-row-left">
+                    <div class="card-row-text">
+                      <p class="card-row-header">Lock Screen</p>
+                      <p class="card-row-sub">Sign in automatically</p>
+                    </div>
+                  </div>
+                  <div class="card-row-right">
+                    <p class="card-row-open">></p>
+                  </div>
+                </div>
+                
+                <hr>
+                <div class="card-row">
+                  <div class="card-row-left">
+                    <div class="card-row-text">
+                      <p class="card-row-header">Manage other people</p>
+                    </div>
+                  </div>
+                  <div class="card-row-right">
+                    <p class="card-row-open">></p>
+                  </div>
+                </div>
+                
+                <hr>
+                <div class="card-row">
+                  <div class="card-row-left">
+                    <div class="card-row-text">
+                      <p class="card-row-header">Help improve ChromeOS features</p>
+                      <p class="card-row-sub">Automatically sends crash reports as well as diagnostic and usage data to Google</p>
+                    </div>
+                  </div>
+                  <div class="card-row-right">
+                    <p class="card-row-open">></p>
+                  </div>
+                </div>
+                
+                <hr>
+                <div class="card-row">
+                  <div class="card-row-left">
+                    <div class="card-row-text">
+                      <p class="card-row-header">Suggest new content to explore</p>
+                      <p class="card-row-sub">Includes apps, webpages, and more. Sends statistics to improve suggestions only if you’ve chosen to share usage data. <a href="https://support.google.com/chromebook/?p=explorecontent">Learn more</a></p>
+                    </div>
+                  </div>
+                  <div class="card-row-right">
+                    <p class="card-row-open">></p>
+                  </div>
+                </div>
+                
+                <hr>
+                <div class="card-row">
+                  <div class="card-row-left">
+                    <div class="card-row-text">
+                      <p class="card-row-header">Enable Verified Acces</p>
+                    </div>
+                  </div>
+                  <div class="card-row-right">
+                    <p class="card-row-open">></p>
+                  </div>
+                </div>
+                
+                <hr>
+                <div class="card-row">
+                  <div class="card-row-left">
+                    <div class="card-row-text">
+                      <p class="card-row-header">Use secure DNS</p>
+                      <p class="card-row-sub">Determines how to connect to websites over a secure connection</p>
+                    </div>
+                  </div>
+                  <div class="card-row-right">
+                    <p class="card-row-open">></p>
+                  </div>
+                </div>
+              </div>
+              
+              <br>
+              
+              <p class="card-header">Security and Privacy</p>
+              <div class="card-inner">
+                <div class="card-row">
+                  <div class="card-row-left">
+                    <div class="card-row-text">
+                      <p class="card-row-header">Lock Screen</p>
+                      <p class="card-row-sub">Sign in automatically</p>
+                    </div>
+                  </div>
+                  <div class="card-row-right">
+                    <p class="card-row-open">></p>
+                  </div>
+                </div>
+                
+                <hr>
+                <div class="card-row">
+                  <div class="card-row-left">
+                    <div class="card-row-text">
+                      <p class="card-row-header">Manage other people</p>
+                    </div>
+                  </div>
+                  <div class="card-row-right">
+                    <p class="card-row-open">></p>
+                  </div>
+                </div>
+                
+                <hr>
+                <div class="card-row">
+                  <div class="card-row-left">
+                    <div class="card-row-text">
+                      <p class="card-row-header">Help improve ChromeOS features and performance</p>
+                      <p class="card-row-sub">Automatically sends crash reports as well as diagnostic and usage data to Google</p>
+                    </div>
+                  </div>
+                  <div class="card-row-right">
+                    <p class="card-row-open">></p>
+                  </div>
+                </div>
+                
+                <hr>
+                <div class="card-row">
+                  <div class="card-row-left">
+                    <div class="card-row-text">
+                      <p class="card-row-header">Suggest new content to explore</p>
+                      <p class="card-row-sub">Includes apps, webpages, and more. Sends statistics to improve suggestions only if you’ve chosen to share usage data. <a href="https://support.google.com/chromebook/?p=explorecontent">Learn more</a></p>
+                    </div>
+                  </div>
+                  <div class="card-row-right">
+                    <p class="card-row-open">></p>
+                  </div>
+                </div>
+              </div>
+                
+                <hr>
+                <p class="card-header">Security and Privacy</p>
+                <div class="card-inner">
+                <div class="card-row">
+                  <div class="card-row-left">
+                    <div class="card-row-text">
+                      <p class="card-row-header">Manage your apps</p>
+                    </div>
+                  </div>
+                  <div class="card-row-right">
+                    <p class="card-row-open">></p>
+                  </div>
+                </div>
+                
+                <hr>
+                <div class="card-row">
+                  <div class="card-row-left">
+                    <div class="card-row-text">
+                      <p class="card-row-header">Notifications</p>
+                      <p class="card-row-sub">29 Apps</p>
+                    </div>
+                  </div>
+                  <div class="card-row-right">
+                    <p class="card-row-open">></p>
+                  </div>
+                </div>
+                
+                <hr>
+                <div class="card-row">
+                  <div class="card-row-left">
+                    <div class="card-row-text">
+                      <p class="card-row-header">Google Play Store</p>
+                      <p class="card-row-sub">Install apps and games from Google Play on your Chromebook. Learn more</p>
+                    </div>
+                  </div>
+                  <div class="card-row-right">
+                    <p class="card-row-open">></p>
+                  </div>
+                </div>
+                
+                <hr>
+                <div class="card-row">
+                  <div class="card-row-left">
+                    <div class="card-row-text">
+                      <p class="card-row-header">Restore apps on restore</p>
+                      <p class="card-row-sub">Install apps and games from Google Play on your Chromebook. Learn more</p>
+                    </div>
+                  </div>
+                  <div class="card-row-right">
+                    <p class="card-row-open">></p>
+                  </div>
+                </div>
+              </div>
+              </div>
+              
+            </div>
+          </div>
+          <!-- <table class="settings-dashboard-inner" id="connectionsItem">
+            <p>Network</p>
+            <tr style="border: 1px solid black;" class="settings-item6">
+              <div>
+                <img class="settings-element-icon" src="img/signal_wifi_4_bar_black_24dp.svg">
+                <div class="settings-element settings-element-name" style="width: 150px">
+                  Wi-Fi
+                </div>
+                <div class="settings-element settings-element-right">
+                  <div style="width: 20px; text-align:center; margin-left: 862px;">|</div>
+                  <div style="width: 40px; text-align:center;;">></div>
+                </div>
+              </div>
+              <hr>
+              <div>
+                <div class="settings-element">
+                  Other
+                </div>
+                <div class="settings-element">
+                  
+                </div>
+                <div class="settings-element">
+                  
+                </div>
+                <div class="settings-element">
+                  Icon 4
+                </div>
+              </div>
+            </tr>
+            
+            <p>Bluetooth</p>
+            <tr class="settings-item6">
+              
+            </tr>
+            
+            <p>Connected Devices</p>
+            <tr class="settings-item6">
+              
+            </tr>
+            
+            <p>Accounts</p>
+            <tr class="settings-item6">
+              
+            </tr>
+            
+            <p>Device</p>
+            <tr class="settings-item6">
+              
+            </tr>
+            
+            <p>Personalization</p>
+            <tr class="settings-item6">
+              
+            </tr>
+            
+            <p>Search and Assistant</p>
+            <tr class="settings-item6">
+              
+            </tr>
+            
+            <p>Security and Privacy</p>
+            <tr class="settings-item6">
+              
+            </tr>
+            
+            <p>Apps</p>
+            <tr class="settings-item6">
+              
+            </tr>
+            
+            <p>Personalization</p>
+            <tr class="settings-item6">
+              
+            </tr>
+            
+            <p>Date and time</p>
+            <tr class="settings-item6">
+              
+            </tr>
+            
+            <p>Language and inputs</p>
+            <tr class="settings-item6">
+              
+            </tr>
+            
+            <p>Files</p>
+            <tr class="settings-item6">
+              
+            </tr>
+            
+            <p>Print and scan</p>
+            <tr class="settings-item6">
+              
+            </tr>
+            
+            <p>Developers</p>
+            <tr class="settings-item6">
+              
+            </tr>
+            
+            <p>Accessibility</p>
+            <tr class="settings-item6">
+              
+            </tr>
+            
+            <p>Reset Settings</p>
+            <tr class="settings-item6">
+              
+            </tr>
+          </table> !-->
+        </div>
+        </div>
+        <div class="settings-item6">
+          Accounts
+          <table id="accountsItem">
+            
+          </table>
+        </div>
+        <div class="settings-item7">
+          Device
+          <table id="deviceItem">
+            
+          </table>
+        </div>
+        <div class="settings-item8">
+          Personalization
+          <table id="personalizationItem">
+            
+          </table>
+        </div>
+        <div class="settings-item9">
+          Security
+          <table id="securityItem">
+            
+          </table>
+        </div>
+      </div>
+      
+    </div><!-- settingsMain -->
+    <!-- onfocus="FocusApp($(this), true);" onfocus="FocusApp($(this));"-->
+    <!-- <div id="window-App" class="window-App resizable-win" onclick="document.getElementById('searchApps').className = 'searchApps-Closed'"> -->
+      <div id="app-Chrome" class="window-App resizable-win" onclick="document.getElementById('searchApps').className = 'searchApps-Closed';">
+        <div id="app-Chrome-header"> 
+          <div id="windowMenu" class="window-Menu">
+            <table>
+              <tr>
+                <td id="settingsMinimize" class="settings-option" onmousedown="closeApp('app-Chrome');" onmouseover="svgHover('settingsExit')" onmousemove="svgLeave('settingsExit')">
+                  <!--<svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 0 24 24' width='24px' fill='#000000'><path d='M0 0h24v24H0V0z' fill='none'/><path d='M6 19h12v2H6v-2z'/></svg>-->
+                  <img id="settingsMinimize_img" src="img/minimize_black_24dp.svg">
+                </td>
+                <td id="settingsFull" class="settings-option" onclick="" onmouseover="svgHover('settingsFull')" onmousemove="svgLeave('settingsFull')">
+                  <!--<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>-->
+                  <img id="settingsFull_img" src="img/fullscreen_black_24dp.svg">
+                </td>
+                <td id="settingsExit" class="settings-option" onmousedown="closeApp('app-Chrome');" onmouseover="svgHover('settingsExit')" onmousemove="svgLeave('settingsExit')">
+                  <!--<btn><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg></btn>!-->
+                  <img id="settingsExit_img" src="img/close_black_24dp.svg">
+                </td>
+              </tr>
+            </table>
+          </div><!-- windowMenu -->
+        </div>
+        <div id="Chrome-inner" class="Chrome-inner">
+          <img id="app-Chrome-Logo" class="app-Chrome-Logo" src="img/googlelogo_color_272x92dp.png">
+          <div id="search-Chrome" class="searchApps-Chrome">
+            <img id="app-Chrome-SearchImg" class="app-Chrome-SearchImg" onclick="openApp('app-Chrome');" src="img/search_black_24dp.svg">
+            <input id="app-Chrome-Input" class="app-Chrome-Input" type="input" onchange="googleSearch(this.value);">
+          </div>
+        </div>
+        <!-- <iframe id="chrome-iframe" src="https://www.youtube.com/embed/uD4izuDMUQA?rel=0&modestbranding=1&autohide=1&showinfo=0&controls=0" frameborder="0" allowfullscreen></iframe> -->
+      </div><!-- app-Chrome -->
+    <!-- </div>window-App -->
+    
+    <div id="desktop" class="desktop" onmouseenter="deskClick();" onmousedown="closeWallpaper();" onclick="rightClick('close'); deskClick();">
+      <img id="background" class="background" src="img/defaultWallpaper.jpg" alt="defaultWallpaper">
+      <div id="searchApps" class="searchApps-Closed">
+        <div id="searchApps-Center" class="searchApps-Center">
+          <br>
+          <img id="searchApps-Center-Drag" class="searchApps-Center-Drag" src="img/keyboard_arrow_up_white_24dp.svg" onclick="toggleSearchAppsBig();">
+          <div id="searchApps-Chrome" class="searchApps-Chrome">
+            <img id="searchChromeApp" class="searchChromeApp" onclick="openApp('app-Chrome');" src="img/search_black_24dp.svg">
+            <input id="searchChromeInput" class="searchChromeInput" type="input" onchange="googleSearch(this.value);">
+          </div>
+        </div>  <!-- searchApps-Center -->
+        <div id="searchApps-Apps">
+          <div id="Apps-Container">
+            
+          </div>
+        </div>
+      </div><!-- searchApps -->
+      <div class="deskMenuHover" onmouseover="showDesk()" onmouseleave="hideDesk()"></div>
+      <div id="deskMenu" class="deskMenu" onmouseover="showDesk()" onmouseleave="hideDesk()">
+        <svg onclick="toggleSearchApps();" height="50px" id="chromeApps" class="chromeApps" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 480 480" shape-rendering="geometricPrecision" text-rendering="geometricPrecision"><ellipse rx="49.20027" ry="49.20027" transform="matrix(3.709339 0 0 3.709339 240 240)" fill="#fff" fill-opacity="0.25" stroke-width="0"/><ellipse rx="49.20027" ry="49.20027" transform="matrix(1.676191 0 0 1.676191 240 240)" fill="rgba(210,219,237,0)" stroke="#fff" stroke-width="3"/><ellipse rx="49.20027" ry="49.20027" transform="matrix(1.379491 0 0 1.379484 240 240)" fill="#fff" stroke="rgba(255,255,255,0)" stroke-width="3"/></svg>
+        <p id="log"></p>
+        <div id="desktopMenu-Center" class="desktopMenu-Center">
+          <img id="chromeApp" class="chromeApp" onclick="openApp('app-Chrome');" onmouseover="changeHoverMenu('Chrome <br> <b>Exit: Ctrl+W</b>', 'open')" onmouseleave="changeHoverMenu('', 'close')" src="img/Google_Chrome_icon_(September_2014).svg.png">
+        </div><!-- deskMenu-Center -->
+        <div id="desktopMenu-Right" class="desktopMenu-Right">
+          <div id="desktopMenu-More" class="desktopMenu-More" onmousedown="toggleMoreOptions();">
+            <img id="desktopMenu-More-Notif" class="desktopMenu-More-Notif" src="img/notifications_active_white_24dp.svg">
+            <hr id="desktopMenu-More-Divider" class="desktopMenu-More-Divider">
+            <img id="desktopMenu-More-Wifi" class="desktopMenu-More-Wifi" src="img/signal_wifi_4_bar_white_24dp.svg" onmouseover="hoverMenuWifiSet();" onmouseleave="changeHoverMenu('', 'close')">
+            <img id="desktopMenu-More-Batt" class="desktopMenu-More-Batt" src="img/battery_unknown_white_24dp.svg" onmouseover="hoverMenuBatteryGet();" onmouseleave="changeHoverMenu('', 'close')">
+            <p id="desktopMenu-More-Time" class="desktopMenu-More-Time" onmouseover="getDate('hoverMenu-Text')" onmouseleave="changeHoverMenu('', 'close')"></p>
+          </div><!-- deskMenu-More -->
+        </div><!-- desktopMenu-Right -->
+      </div><!-- deskMenu -->
+      <div id="desktopMenu-More-Options" class="desktopMenu-More-Options-Closed" onmouseover="showDesk()" onmouseleave="hideDesk(); if(autoHide == true){toggleMoreOptions();}">
+        <div id="desktopMenu-More-Options-Body" class="desktopMenu-More-Options-Closed-Body">
+          <div id="desktopMenu-More-Options-Acc" class="desktopMenu-More-Options-Acc-Closed"></div>
+          <div id="desktopMenu-More-Options-SignOut" class="desktopMenu-More-Options-SignOut-Closed" onclick="logOut(); console.log('Loging Out')"><div id="desktopMenu-More-Options-SignOut-Inner" class="desktopMenu-More-Options-SignOut-Closed-Inner" style="padding: 6px; width: 60px;">Sign out</div></div>
+          <div id="desktopMenu-More-Options-Power" class="desktopMenu-More-Options-Power-Closed" onclick="power();"></div>
+          <div id="desktopMenu-More-Options-Lock" class="desktopMenu-More-Options-Lock-Closed" onclick="lock();"></div>
+          <div id="desktopMenu-More-Options-Settings" class="desktopMenu-More-Options-Settings-Closed" onclick="openSettings(); toggleMoreOptions();"></div>
+          <div id="desktopMenu-More-Options-Dev" class="desktopMenu-More-Options-Dev-Closed" onclick="openApp('devConsole'); toggleMoreOptions();"></div>
+          <div id="desktopMenu-More-Options-Big" class="desktopMenu-More-Options-Big-Open">
+            <div class="desktopMenu-More-Options-Big-Inner">
+              <div class="desktopMenu-More-Options-Big-Row">
+                <div class="desktopMenu-More-Options-Big-Item">
+                  <img id="Menu-Wifi-Icon" src="img/signal_wifi_4_bar_white_24dp.svg">
+                  <div>
+                    <p id="Menu-Wifi-Status">Wifi</p>
+                    <p id="Menu-Wifi-SubStatus" class="subtitle">Not Connected</p>
+                  </div>
+                </div>
+                <div class="desktopMenu-More-Options-Big-Item">
+                  <img id="Menu-Bluetooth-Icon" src="img/bluetooth_white_24dp.svg">
+                  <div>
+                    <p id="Menu-Bluetooth-Status">Bluetooth</p>
+                    <!-- <p class="subtitle">Off</p> !-->
+                  </div>
+                </div>
+                <div class="desktopMenu-More-Options-Big-Item">
+                  <img src="img/donotdisturb.svg">
+                  <div>
+                    <p>Notifications</p>
+                    <p class="subtitle">Do not disterb</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="desktopMenu-More-Options-Big-Row">
+                <div class="desktopMenu-More-Options-Big-Item">
+                  <img src="img/screencapture.svg">
+                  <div>
+                    <p>Screen <br> Capture</p>
+                  </div>
+                </div>
+                <div class="desktopMenu-More-Options-Big-Item">
+                  <img src="img/nearbyvisibility.svg">
+                  <div>
+                    <p>Nearby Visibility</p>
+                    <p class="subtitle">Off</p>
+                  </div>
+                </div>
+                <div class="options-circ-btn desktopMenu-More-Options-Big-Item">
+                  <img id="Menu-NightLight-Icon" src="img/day_mode_white.svg" onclick="toggleNightLight();">
+                  <div class="">
+                    <p>Night Light</p>
+                    <p id="Menu-NightLight-SubStatus" class="subtitle">Off</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="desktopMenu-More-Options-Range">
+            <div class="desktopMenu-More-Options-Range-Inner">
+              <div class="desktopMenu-More-Options-Range-Row">
+                <img src="img/volume.svg">
+                <input type="range" value=50 min=0 max=100/>
+              </div>
+              <div class="desktopMenu-More-Options-Range-Row">
+                <img src="img/volume.svg">
+                <input type="range" value=50 min=0 max=100/>
+              </div>
+            </div>
+          </div>
+            
+        </div>
+      </div><!-- desktopMenuMoreOptions -->
+    </div><!-- desktop -->
+    <div id="hoverMenu" class="hoverMenu">
+      <p id="hoverMenu-Text" class="hoverMenu-Text"></p>
+  </div>
+  </body>
+</html>
