@@ -137,18 +137,17 @@
 
 #searchApps-Apps {
   position: relative;
-  background: green;
   transition-duration: 0.5s;
   opacity: 0;
   height: 75%;
   width: 75%;
   display: flex;
   justify-content: left;
+  align-items: center;
 }
 
 #Apps-Container {
   --icon-dimension: 100px;
-  background: rgba(0, 0, 0, 0.6);
   position: relative;
   height: 100%;
   width: 95%;
@@ -179,6 +178,7 @@
 
 /* Pinned Apps */
 .desktopMenu-Center {
+    --centerIcon-dimension: calc(var(--menuHeight) - 12px);
     display: inline-block;
     margin-left: calc(50vw - calc(var(--menuHeight) + 20px));/* desktop menu apps */
     margin-top: calc(calc(var(--menuHeight) / -1) + 38px);
@@ -722,11 +722,6 @@
   padding-left: 10px;
 }
 
-.chromeApp {
-  height: calc(var(--menuHeight) - 12px);
-  cursor: pointer;
-}
-
 #app-Chrome {
   display: none;
 }
@@ -932,7 +927,7 @@
   height: 20px;
 }
 
-//* {border: 0.1px solid red;}
+ /* {border: 0.1px solid red;} */
 
 
 /* Settings */
@@ -1139,10 +1134,16 @@
   width: 600px;
 }
 
-
 .icon {
-  width: var(--icon-dimension);
   height: var(--icon-dimension);
-  background: url("img/Google_Chrome_icon_(September_2014).svg.png");
-  background-size: cover;
+}
+
+.small-icon {
+  height: var(--centerIcon-dimension);
+  cursor: pointer;
+}
+
+.Chrome-Header {
+  display: flex;
+  justify-content: flex-end;
 }

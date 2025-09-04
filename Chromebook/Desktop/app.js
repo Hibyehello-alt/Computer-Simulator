@@ -9,6 +9,9 @@ class BaseApp {
         this.appDiv.style.width = width;
         this.displayType = "flex";
         this.open = false;
+        this.icon = null;
+        this.small_icon = null;
+        this.installed = false;
     }
 
     openApp() {
@@ -99,8 +102,38 @@ class BaseApp {
             console.log(this.appDiv.id, "focused");
     }
 
+    createIcon(iconPath) {
+        this.icon = document.createElement("img");
+        this.small_icon = document.createElement("img");
+
+        this.icon.src = iconPath;
+        this.icon.classList.add("icon");
+
+        this.small_icon.src = iconPath;
+        this.small_icon.classList.add("small-icon");
+
+        this.icon.addEventListener("click", this.openApp)
+        this.small_icon.addEventListener("click", this.openApp)
+    }
+
+    InstallApp() {
+        if(this.installed) {
+            console.error(this.appDiv.id, "is already installed!")
+            return;
+        }
+        document.getElementById("Apps-Container").appendChild(this.icon);
+        this.addDesktopMenuIcon();
+
+        this.installed = true;
+    }
+
+    addDesktopMenuIcon() {
+        document.getElementById("desktopMenu-Center").appendChild(this.small_icon);
+    }
 }
 
+
+// TODO: Move this out of app.js
 class Chrome extends BaseApp {
     constructor() {
         super("Chrome", 400, 400);
@@ -110,6 +143,7 @@ class Chrome extends BaseApp {
         this.appDiv.style.top = "0";
 
         // Since Event listeners break without this...
+        this.openApp = this.openApp.bind(this);
         this.closeApp = this.closeApp.bind(this);
         this.minimizeApp = this.minimizeApp.bind(this);
         this.maximizeApp = this.maximizeApp.bind(this);
@@ -117,5 +151,8 @@ class Chrome extends BaseApp {
 
         this.createHeader();
         this.appHeader.style.background = "gray";
+        this.appHeader.classList.add("Chrome-Header");
+
+        this.createIcon("img/Google_Chrome_icon_(September_2014).svg.png");
     };
 }

@@ -12,7 +12,10 @@ function main() {
     document.getElementById('settings-user').innerHTML = getCookie('Username');
   }
 
+  // Example Chrome
+  // TODO: implement it into some sort of package to be an example
   appChrome = new Chrome();
+  appChrome.InstallApp();
 }
 
 function menuMore(){
@@ -800,7 +803,7 @@ function FocusApp(element) {
   element.classList.add("window-App-On-Top");
 }
 
-function addIcons(num) {
+function addIcons(node) {
   for(let i = 1; i <= num; i++) {
     var icon = document.createElement('div');
     icon.classList.add("icon");
