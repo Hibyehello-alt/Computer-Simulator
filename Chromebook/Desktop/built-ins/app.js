@@ -1,9 +1,10 @@
-class BaseApp {
+export class BaseApp {
     appHeader;
 
     constructor(name, height, width) {
         this.appDiv = document.createElement("div");
         this.appDiv.addEventListener("mouseup", this.focusApp);
+        this.id = name;
         this.appDiv.id = name;
         this.appDiv.style.height = height;
         this.appDiv.style.width = width;
@@ -112,6 +113,8 @@ class BaseApp {
         this.small_icon.src = iconPath;
         this.small_icon.classList.add("small-icon");
 
+        //onmouseover="changeHoverMenu('Chrome <br> <b>Exit: Ctrl+W</b>', 'open')" onmouseleave="changeHoverMenu('', 'close')"
+
         this.icon.addEventListener("click", this.openApp)
         this.small_icon.addEventListener("click", this.openApp)
     }
@@ -123,36 +126,11 @@ class BaseApp {
         }
         document.getElementById("Apps-Container").appendChild(this.icon);
         this.addDesktopMenuIcon();
-
+        registerApp(this);
         this.installed = true;
     }
 
     addDesktopMenuIcon() {
         document.getElementById("desktopMenu-Center").appendChild(this.small_icon);
     }
-}
-
-
-// TODO: Move this out of app.js
-class Chrome extends BaseApp {
-    constructor() {
-        super("Chrome", 400, 400);
-        this.displayType = "block"
-        this.appDiv.classList.add("window-App");
-        this.appDiv.classList.add("resizable-win");
-        this.appDiv.style.top = "0";
-
-        // Since Event listeners break without this...
-        this.openApp = this.openApp.bind(this);
-        this.closeApp = this.closeApp.bind(this);
-        this.minimizeApp = this.minimizeApp.bind(this);
-        this.maximizeApp = this.maximizeApp.bind(this);
-        this.focusApp = this.focusApp.bind(this);
-
-        this.createHeader();
-        this.appHeader.style.background = "gray";
-        this.appHeader.classList.add("Chrome-Header");
-
-        this.createIcon("img/Google_Chrome_icon_(September_2014).svg.png");
-    };
 }

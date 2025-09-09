@@ -715,6 +715,22 @@
   color: #7198d9;
 }
 
+.dev-text-container .error {
+  color: red;
+}
+
+.dev-text-container .warn {
+  color: orange;
+}
+
+.dev-text-container .info {
+  color: lightblue;
+}
+
+.dev-text-container .log {
+  color: gray;
+}
+
 #devText {
   overflow-y: scroll;
   margin: 0;

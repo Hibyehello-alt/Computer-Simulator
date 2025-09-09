@@ -1,10 +1,9 @@
-/* Main javascript (onload Events) */
-var appChrome;
+var installedApps = {};
 
-function main() {
+/* Main javascript (onload Events) */
+async function main() {
   setCurrentWallpaper();
   dragElement(document.getElementById("devConsole"));
-  dragElement(document.getElementById("app-Chrome"));
   menuMore();
   if(true) {
     document.getElementById('settings-user').innerHTML = 'HelloWorld';
@@ -12,9 +11,9 @@ function main() {
     document.getElementById('settings-user').innerHTML = getCookie('Username');
   }
 
-  // Example Chrome
-  // TODO: implement it into some sort of package to be an example
-  appChrome = new Chrome();
+  // Built-in Chrome
+  await loadApp("./built-ins/chrome.js")
+  var appChrome = new (InstalledModules.get("Chrome")).Chrome();
   appChrome.InstallApp();
 }
 
@@ -49,11 +48,16 @@ function deskClick() {
     }
 }
 
+function registerApp(app) {
+  installedApps[app.id] = app;
+}
+
 function openApp(appId) {
-  var app = document.getElementById(appId).style.display = "flex";
- if(app == "app-Chrome") {
-   document.getElementById("chrome-iframe").src = "https://www.youtube.com/embed/uD4izuDMUQA?rel=0&modestbranding=1&autohide=1&showinfo=0&controls=0";
- }
+  getApp(appId).openApp();
+}
+
+function getApp(appId) {
+  return installedApps[appId];
 }
 
 
@@ -210,11 +214,13 @@ function toggleSearchApps() {
   if(document.getElementById("searchApps").className == "searchApps-Closed"){
     document.getElementById("searchApps").className = "searchApps-Open";
   } else if(document.getElementById("searchApps").className == "searchApps-Open" || document.getElementById("searchApps").className == "searchApps-More"){
+    searchApps = true;
+    toggleSearchAppsBig(); // Make sure that this toggles on close
     document.getElementById("searchApps").className = "searchApps-Closed"
   }
 }
 
-searchApps = false;
+var searchApps = false;
 function toggleSearchAppsBig() {
  if(searchApps == false){
    document.getElementById("searchApps").className = "searchApps-More";
