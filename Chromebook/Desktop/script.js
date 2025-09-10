@@ -15,6 +15,12 @@ async function main() {
   await loadApp("./built-ins/chrome.js")
   var appChrome = new (InstalledModules.get("Chrome")).Chrome();
   appChrome.InstallApp();
+
+  // Built-in console
+  await loadApp("./built-ins/console.js")
+  console.log(InstalledModules);
+  var devConsole = new (InstalledModules.get("Console")).devConsole();
+  devConsole.InstallApp();
 }
 
 function menuMore(){

@@ -2,18 +2,12 @@ import { BaseApp } from "./app.js";
 
 export class Chrome extends BaseApp {
     constructor() {
-        super("Chrome", 400, 400);
-        this.displayType = "block"
+        super("Chrome", "720px", "1280px");
+        this.displayType = "flex"
         this.appDiv.classList.add("window-App");
         this.appDiv.classList.add("resizable-win");
         this.appDiv.style.top = "0";
-
-        // Since Event listeners break without this...
-        this.openApp = this.openApp.bind(this);
-        this.closeApp = this.closeApp.bind(this);
-        this.minimizeApp = this.minimizeApp.bind(this);
-        this.maximizeApp = this.maximizeApp.bind(this);
-        this.focusApp = this.focusApp.bind(this);
+        this.appDiv.style.flexDirection = "column";
 
         this.createHeader();
         this.appHeader.style.background = "gray";

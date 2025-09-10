@@ -13,6 +13,10 @@ export class BaseApp {
         this.icon = null;
         this.small_icon = null;
         this.installed = false;
+
+        // Make sure these functions are bound
+        this.openApp = this.openApp.bind(this);
+        this.closeApp = this.closeApp.bind(this);
     }
 
     openApp() {
@@ -20,7 +24,7 @@ export class BaseApp {
         this.appDiv.style.display = this.displayType;
         document.body.appendChild(this.appDiv);
 
-        if(this.appHeader.onmousedown == null) { 
+        if(this.appHeader && this.appHeader.onmousedown == null) { 
             dragElement(this.appDiv);
         }
         this.focusApp()
@@ -43,7 +47,7 @@ export class BaseApp {
         this.appDiv.classList.add(className);
     }
 
-    createHeader(showButtons=true) {
+    createHeader(showButtons="ttt") {
         this.appHeader = document.createElement("div");
         this.appHeader.id = this.appDiv.id + "-header";
 
@@ -51,15 +55,18 @@ export class BaseApp {
         
 
         if(showButtons) {
-            this.appHeader.appendChild(this.createWindowMenu())
+            this.appHeader.appendChild(this.createWindowMenu(showButtons))
         }
 
         this.appDiv.appendChild(this.appHeader);
     }
 
-    createWindowMenu() {
+    createWindowMenu(buttons) {
         var windowMenu = document.createElement("table");
 
+    console.log(buttons[0]);
+
+    if(buttons[0] == "t")
     { // Minimize
         var Button = document.createElement("td");
         Button.classList.add("settings-option");
@@ -71,6 +78,7 @@ export class BaseApp {
         windowMenu.appendChild(Button);
     }
 
+    if(buttons[1] == "t")
     { // Fullscreen
         var Button = document.createElement("td");
         Button.classList.add("settings-option");
@@ -82,6 +90,7 @@ export class BaseApp {
         windowMenu.appendChild(Button);
     }
 
+    if(buttons[2] == "t")
     { // Close
         var Button = document.createElement("td");
         Button.classList.add("settings-option");
@@ -122,6 +131,10 @@ export class BaseApp {
     InstallApp() {
         if(this.installed) {
             console.error(this.appDiv.id, "is already installed!")
+            return;
+        }
+        if(!this.icon) {
+            console.error(this.appDiv.id, "cannot be installed: No icon error!");
             return;
         }
         document.getElementById("Apps-Container").appendChild(this.icon);
