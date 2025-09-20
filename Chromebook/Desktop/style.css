@@ -635,6 +635,7 @@
   height: 100%;
   float: right;
   cursor: pointer;
+  display: flex;
 }
 
 .app-menu p {

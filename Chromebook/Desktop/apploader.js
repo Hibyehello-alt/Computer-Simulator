@@ -8,3 +8,30 @@ async function loadApp(path) {
 
     InstalledModules.set(moduleName, await import(path));
 }
+
+function FocusApp(element) {
+
+  let oldFocused = focusedApp; 
+
+  focusedApp = element;
+
+  if(oldFocused != null) {
+    oldFocused.classList.remove("window-App-On-Top");
+    oldFocused.blur();
+  }
+
+  element.classList.add("window-App-On-Top");
+
+  console.log("FocusApp:", focusedApp);
+
+  return true;
+}
+
+function addIcons(node) {
+  for(let i = 1; i <= num; i++) {
+    var icon = document.createElement('div');
+    icon.classList.add("icon");
+
+    document.getElementById("Apps-Container").appendChild(icon);
+  }
+}

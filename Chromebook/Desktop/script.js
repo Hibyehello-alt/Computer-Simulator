@@ -1,4 +1,5 @@
 var installedApps = {};
+var focusedApp;
 
 /* Main javascript (onload Events) */
 async function main() {
@@ -770,7 +771,6 @@ function dragElement(elmnt) {
     // }
 
   function dragMouseDown(e) {
-    FocusApp(elmnt);
     e = e || window.event;
     e.preventDefault();
     // get the mouse cursor position at startup:
@@ -799,27 +799,5 @@ function dragElement(elmnt) {
     // stop moving when mouse button is released:
     document.onmouseup = null;
     document.onmousemove = null;
-  }
-}
-
-function FocusApp(element) {
-
-  console.log("FocusApp:", element.id);
-
-  var myElement = document.querySelector('.window-App-On-Top');
-
-  if(myElement != null) {
-    myElement.classList.remove("window-App-On-Top");
-  }
-
-  element.classList.add("window-App-On-Top");
-}
-
-function addIcons(node) {
-  for(let i = 1; i <= num; i++) {
-    var icon = document.createElement('div');
-    icon.classList.add("icon");
-
-    document.getElementById("Apps-Container").appendChild(icon);
   }
 }

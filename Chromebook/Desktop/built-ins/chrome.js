@@ -11,7 +11,6 @@ export class Chrome extends BaseApp {
 
         this.createHeader();
         this.appHeader.style.background = "gray";
-        this.appHeader.classList.add("Chrome-Header");
 
         this.createIcon("img/Google_Chrome_icon_(September_2014).svg.png");
     };

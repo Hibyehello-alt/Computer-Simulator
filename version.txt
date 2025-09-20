@@ -1,0 +1,4 @@
+ver 11/12/23 - Added Computer Simulator
+ver 07/07/25 - Update Computer Simulator: Cookies now save last chosen Background Wallpaper
+ver 09/19/25 - Update Computer Simulator: Rewrite the application system to be procedural - Added Built-ins/apploader.js
+               TODO: Fix Focusing
