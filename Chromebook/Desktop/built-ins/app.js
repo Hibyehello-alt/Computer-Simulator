@@ -3,9 +3,6 @@ export class BaseApp {
 
     constructor(name, height, width) {
         this.appDiv = document.createElement("div");
-        this.appDiv.addEventListener("click", this.focusApp);
-        this.appDiv.addEventListener("focusin", console.log(this.id));
-        this.appDiv.addEventListener("focusout", this.unfocusApp);
         this.appDiv.tabIndex = "-1";
         this.id = name;
         this.appDiv.id = name;
@@ -23,8 +20,8 @@ export class BaseApp {
         this.closeApp = this.closeApp.bind(this);
         this.minimizeApp = this.minimizeApp.bind(this);
         this.maximizeApp = this.maximizeApp.bind(this);
-        this.focusApp = this.focusApp.bind(this.appDiv);
-        this.unfocusApp = this.unfocusApp.bind(this.appDiv);
+        this.focusApp = this.focusApp.bind(this);
+        this.unfocusApp = this.unfocusApp.bind(this);
     }
 
     openApp() {
@@ -35,7 +32,8 @@ export class BaseApp {
         if(this.appHeader && this.appHeader.onmousedown == null) { 
             dragElement(this.appDiv);
         }
-        FocusApp(this.appDiv);
+        this.focusApp();
+        this.appDiv.addEventListener("click", this.focusApp);
     }
 
     minimizeApp() {
@@ -114,12 +112,16 @@ export class BaseApp {
 
     focusApp() {
         if(!this.focused) {
+            console.log(this);
             this.focused = FocusApp(this);
+            this.appDiv.classList.add("window-App-On-Top");
         }
     }
 
     unfocusApp() {
         this.focused = false;
+        this.appDiv.blur();
+        this.appDiv.classList.remove("window-App-On-Top");
         console.log(this.id, "unfocused");
     }
 

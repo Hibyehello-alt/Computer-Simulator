@@ -1,5 +1,4 @@
 var installedApps = {};
-var focusedApp;
 
 /* Main javascript (onload Events) */
 async function main() {

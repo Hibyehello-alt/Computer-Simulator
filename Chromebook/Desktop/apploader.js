@@ -1,4 +1,5 @@
 const InstalledModules = new Map()
+var focusedApp;
 
 async function loadApp(path) {
     let moduleName = path.match(/[^/]+(?=(?:\.[^.]+)?$)/)[0];
@@ -10,19 +11,16 @@ async function loadApp(path) {
 }
 
 function FocusApp(element) {
-
+  console.log("Element:", element);
   let oldFocused = focusedApp; 
-
   focusedApp = element;
 
-  if(oldFocused != null) {
-    oldFocused.classList.remove("window-App-On-Top");
-    oldFocused.blur();
+  console.log("Old Focused:", oldFocused);
+  if(oldFocused != undefined) {
+    oldFocused.unfocusApp();
   }
 
-  element.classList.add("window-App-On-Top");
-
-  console.log("FocusApp:", focusedApp);
+  console.log("FocusApp:", focusedApp.id);
 
   return true;
 }
